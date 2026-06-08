@@ -1,8 +1,11 @@
 #pragma once
 #include "Entry.h"
 
-class Directory : public Entry, public std::enable_shared_from_this<Directory> {
+class Directory : public Entry, 
+	public std::enable_shared_from_this<Directory> {
+
 	std::vector<std::shared_ptr<Entry>> children;
+
 public:
 	Directory(const std::string& name);
 	void addChild(std::shared_ptr<Entry> child);

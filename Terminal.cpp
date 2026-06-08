@@ -1,11 +1,13 @@
 #include "Terminal.h"
 
 namespace {
-	std::map<std::string, CommandType> commands{ {"help", CommandType::help}, {"exit", CommandType::exit},
-		{"ls", CommandType::ls}, {"cd", CommandType::cd}, {"cat", CommandType::cat},
-		{"touch", CommandType::touch}, {"mkdir", CommandType::mkdir}, {"rm", CommandType::rm},
-		{"restore", CommandType::restore}, {"mv", CommandType::mv}, {"edit", CommandType::edit}
-	};
+	std::map<std::string, CommandType> commands{ 
+		{"help", CommandType::help}, {"exit", CommandType::exit},
+		{"ls", CommandType::ls}, {"cd", CommandType::cd}, 
+		{"cat", CommandType::cat}, {"touch", CommandType::touch}, 
+		{"mkdir", CommandType::mkdir}, {"rm", CommandType::rm},
+		{"restore", CommandType::restore}, {"mv", CommandType::mv}, 
+		{"edit", CommandType::edit}};
 }
 
 Terminal::Terminal(std::ostream& os) : stream(os) {
@@ -48,7 +50,7 @@ void Terminal::cd(std::string& name) {
 	}
 	auto child = curr->findChild(name);
 	if (child && child->isDirectory() && !child->isHidden()) {
-		curr = std::dynamic_pointer_cast<Directory>(child); //Directory and Entry
+		curr = std::dynamic_pointer_cast<Directory>(child);
 	}
 	else {
 		stream << name << " not found\n";
